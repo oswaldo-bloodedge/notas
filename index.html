@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+        <link rel="stylesheet" href="estilos.css">
+        <!--<link rel="stylesheet" href="https://necolas.github.io/normalize.css/3.0.2/normalize.css">-->
+        <title>Lista de Tareas</title>
+    </head>
+    <body>
+        <div class="contenedor" id="contenedor-pendientes">
+        <div class="principal" id="principal">
+            <div class="wrap" id="wrap">
+                <form class="formulario" action="" id="formulario">
+                    
+                    <input type="text" id="tareaInput" placeholder="Agrega tu tarea">
+                    <input type="button" class="boton" id="btn-agregar" value="Agregar Tarea" onclick="registro()">
+                    
+                </form>
+            </div>
+        </div>
+        
+        <div class="tareas" id="tareas">
+            <div class="wrap">
+                <ul class="lista" id="lista">
+                    
+                </ul>
+            </div>
+        </div>
+        </div>
+        
+        </body>
+        
+        <script src="scripts.js"></script>
+    
+    
+    <script>
+        function registro(){
+            principal = document.getElementById('tareaInput').value;
+            pendientesGuardados = localStorage.getItem('principal');
+            totalPendientes = pendientesGuardados + principal + '-';
+            localStorage.setItem('principal', totalPendientes);
+            document.getElementById('tareaInput').value;
+            
+            nuevoPendiente = "<div class='tareas' id='tareas'><div class='wrap'><ul class='lista' id='lista'><li><a>"+principal+"</a></li></ul></div></div>"
+            document.getElementById('contenedor-pendientes').innerHTML+=nuevoPendiente;
+            }
+            
+            window.addEventListener('load',cargada,true);
+            
+            function cargada(){
+                pendientes = localStorage.getItem('principal');
+                pendientePartido = pendientes.split('-');
+            var i = 0;
+            while(i<pendientePartido.length-1){
+                contenedorPendientes = document.getElementById('contenedor-pendientes');
+                contenedorPendientes.innerHTML += "<div class='tareas' id='tareas'><div class='wrap'><ul class='lista' id='lista'><li><a>"+pendientePartido[i]+"</a></li></ul></div></div>"
+                i++
+                }
+            };
+    </script>
+        
+</html>
